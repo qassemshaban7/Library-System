@@ -1,0 +1,72 @@
+/* Images URL
+http://dotnethow.net/images/movies/movie-1.jpeg
+https://dotnethow.net/images/movies/movie-2.jpeg
+http://dotnethow.net/images/movies/movie-3.jpeg
+http://dotnethow.net/images/movies/movie-4.jpeg
+https://dotnethow.net/images/movies/movie-5.jpeg
+http://dotnethow.net/images/movies/movie-6.jpeg
+http://dotnethow.net/images/movies/movie-7.jpeg
+http://dotnethow.net/images/movies/movie-8.jpeg
+https://dotnethow.net/images/movies/movie-9.jpeg
+https://dotnethow.net/images/movies/movie-10.jpeg
+*/
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 10px;
+}
+
+.main {
+  margin: 20px;
+}
+
+form {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+form button {
+  background-color: #28a745;
+  color: white;
+  text-align: center;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #218838;
+}
+
+.book-grid {
+  display: flex;
+  flex-wrap: wrap; 
+  gap: 15px; 
+  justify-content: flex-start; 
+  max-width: 100%; 
+  padding: 10px; 
+}
+
+.book-card {
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 15px;
+  text-align: center;
+  width: 300px; 
+  box-sizing: border-box;
+}
+
+.book-card img {
+  width: 100%;
+  border-radius: 4px;
+}

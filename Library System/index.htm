@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="eng">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Library System</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Booking</h1>
+    </header>
+
+    <div class="main">
+      <form id="add-book-form">
+        <input
+          type="text"
+          id="title"
+          placeholder="Enter Book Name"
+          required
+        /><br />
+        <input
+          type="text"
+          id="author"
+          placeholder="Enter author Name"
+          required
+        /><br />
+        <input
+          type="text"
+          id="image"
+          placeholder="Enter image URL"
+          required
+        /><br />
+        <button type="submit">Add New Book</button>
+      </form>
+
+      <div id="book-list" class="book-grid"></div>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>
