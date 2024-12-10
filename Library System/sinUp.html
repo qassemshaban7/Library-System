@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login</title>
+    <title>Sign Up</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -15,29 +15,36 @@
         <a href="login.html">Login</a>
       </nav>
     </header>
-    <div class="login-form">
-      <form id="login">
+
+    <div class="signup-form">
+      <form id="signup">
         <input
-          class="login-element"
+          class="signup-element"
           type="text"
           id="username"
           placeholder="Enter Your UserName"
           required
         /><br />
         <input
-          class="login-element"
+          class="signup-element"
           type="password"
           id="password"
-          placeholder="Enter your password"
+          placeholder="Enter Your Password"
           required
-        />
-        <br />
-        <button class="login-button" type="submit">Login</button>
+        /><br />
+        <!-- <select id="role" class="signup-element" required>
+          <option value="user">User</option>
+          <option value="admin">admin</option>
+        </select>
+        <br /> -->
+        <button class="signup-button" type="submit">Sign Up</button>
       </form>
     </div>
+
     <footer>
       <p>&copy; 2024 Booking Library System. All rights reserved.</p>
     </footer>
+
     <script src="sinup&login.js"></script>
   </body>
 </html>
