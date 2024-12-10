@@ -14,6 +14,9 @@ https://dotnethow.net/images/movies/movie-10.jpeg
 body {
   margin: 0;
   padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 header {
@@ -21,8 +24,15 @@ header {
   color: white;
   text-align: center;
   padding: 10px;
+  font-size: large;
 }
-
+header a{
+  background-color: #333;
+  color: blue;
+  text-align: center;
+  padding: 10px;
+  font-size: large;
+}
 .main {
   margin: 20px;
 }
@@ -36,6 +46,7 @@ header {
   padding: 10px; 
   font-weight: bold;
   font-size: large;
+  flex: 1;
 }
 
 .book-card {
@@ -58,6 +69,7 @@ header {
   margin-top: 30px;
   margin-bottom: 20px;
   text-align: center;
+  flex: 1;
 }
 
 .add-book-element{
@@ -80,6 +92,7 @@ header {
   margin-top: 30px;
   margin-bottom: 20px;
   text-align: center;
+  flex: 1;
 }
 
 .login-element{
@@ -97,4 +110,36 @@ header {
   padding: 10px;
   margin: 5px;
 
+}
+
+.signup-form{
+  color: #000;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  text-align: center;
+  flex: 1;
+}
+
+.signup-element{
+  width: 30%;
+  padding: 10px;
+  margin: 5px;
+  border-radius: 5px;
+  
+}
+
+.signup-button{
+  background-color: green;
+  border-radius: 5px;
+  width: 30%;
+  padding: 10px;
+  margin: 5px;
+
+}
+
+footer{
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
 }
