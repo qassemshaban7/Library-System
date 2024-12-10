@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add New Book</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Add New Book</h1>
+    </header>
+    <div class="add-book-form">
+      <form id="add-book-form">
+        <input
+          class="add-book-element"
+          type="text"
+          id="title"
+          placeholder="Enter Book Name"
+          required
+        /><br />
+        <input
+          class="add-book-element"
+          type="text"
+          id="author"
+          placeholder="Enter author Name"
+          required
+        /><br />
+        <input
+          class="add-book-element"
+          type="text"
+          id="image"
+          placeholder="Enter image URL"
+          required
+        /><br />
+        <select class="add-book-element" type="radio" id="avilablity" required>
+          <option value="Avilable">Avilable</option>
+          <option value="NotAvilable">NotAvilable</option>
+        </select>
+        <br />
+        <button class="add-book-button" type="submit">Add New Book</button>
+      </form>
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>

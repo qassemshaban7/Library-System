@@ -3,29 +3,33 @@ var books = JSON.parse(localStorage.getItem("books"));
 var bookList = document.getElementById("book-list");
 
 function displayBooks() {
-    bookList.innerHTML = ""; 
+    const bookList = document.getElementById("book-list");
+    if (!bookList) {
+        console.error("Book list container not found.");
+        return;
+    }
+
+    const books = JSON.parse(localStorage.getItem("books")) || [];
+    bookList.innerHTML = "";
 
     books.forEach((book, index) => {
-        var div = document.createElement("div");
-            div.className = "book-card";
-            
-        var bookInfo = document.createElement("p");
+        const div = document.createElement("div");
+        div.className = "book-card";
+
+        const bookInfo = document.createElement("p");
         bookInfo.textContent = `${book.title} - ${book.author}`;
         div.appendChild(bookInfo);
 
-        var img = document.createElement("img");
+        const img = document.createElement("img");
         img.src = book.imageElement;
         div.appendChild(img);
 
-        var deleteButton = document.createElement("button");
+        const deleteButton = document.createElement("button");
         deleteButton.textContent = "Delete";
-        deleteButton.id = `delete-button-${index}`;
 
         deleteButton.addEventListener("click", () => {
             books.splice(index, 1);
-
             localStorage.setItem("books", JSON.stringify(books));
-
             displayBooks();
         });
 
@@ -36,26 +40,35 @@ function displayBooks() {
 
 document.addEventListener("DOMContentLoaded", displayBooks);
 
-document.getElementById("add-book-form").addEventListener("submit", (e) => {
-    e.preventDefault();
 
-    var title = document.getElementById("title").value;
-    var author = document.getElementById("author").value;
-    var imageElement = document.getElementById("image").value;
+document.addEventListener("DOMContentLoaded", displayBooks);
 
-    books.push({ title, author, imageElement });
+document.addEventListener("DOMContentLoaded", () => {
+    const addBookForm = document.getElementById("add-book-form");
+    if (addBookForm) {
+        addBookForm.addEventListener("submit", (e) => {
+            e.preventDefault();
 
-    localStorage.setItem("books", JSON.stringify(books));
+            const title = document.getElementById("title").value;
+            const author = document.getElementById("author").value;
+            const imageElement = document.getElementById("image").value;
+            const avilablity = document.getElementById("avilablity").value;
 
-    displayBooks();
+            const books = JSON.parse(localStorage.getItem("books")) || [];
+            books.push({ title, author, imageElement, avilablity });
 
-    e.target.reset();
+            localStorage.setItem("books", JSON.stringify(books));
+
+            e.target.reset();
+        });
+    }
 });
+
 
 
 ////! Local Storage 
 // localStorage.clear();
-console.log(localStorage);
-// console.log(localStorage.getItem("imageElement"));
+// console.log(localStorage);
+// console.log(localStorage.getItem("avilablity"));
 // localStorage.removeItem("");
 
