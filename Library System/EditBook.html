@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Add New Book</title>
+    <title>Edit a Book</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -14,9 +14,9 @@
         <a id="logout" href="login.html">Log Out</a>
       </nav>
     </header>
-    <h1>Add New Book</h1>
+    <h1>Edit a Book</h1>
     <div class="add-book-form">
-      <form action="index.html" id="add-book-form">
+      <form id="add-book-form">
         <input
           class="add-book-element"
           type="text"
@@ -60,8 +60,15 @@
           <option value="NotAvilable">NotAvilable</option>
         </select>
         <br />
-        <button class="add-book-button" id="add-book-button" type="submit">
-          Add New Book
+        <button class="save-book-button" id="add-book-button" type="submit">
+          Save Edits
+        </button>
+        <button
+          class="cancel-book-button"
+          id="cancel-button"
+          onclick="window.location.href='index.html'; return false;"
+        >
+          Cancel
         </button>
       </form>
     </div>
@@ -70,6 +77,7 @@
     </footer>
     <script src="validation.js"></script>
     <script src="main.js"></script>
+    <script src="edit.js"></script>
     <script src="sinup&login.js"></script>
   </body>
 </html>
