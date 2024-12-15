@@ -20,7 +20,7 @@ function displayBooks() {
 
         var img = document.createElement("img");
         img.src = book.imageElement;
-        div.appendChild(img);
+        div.appendChild(img);ق
 
         var deleteButton = document.createElement("button");
         deleteButton.textContent = "Delete";
