@@ -1,4 +1,6 @@
 
+var user =localStorage.getItem("loggedInUser");
+
 
 var books = JSON.parse(localStorage.getItem("books"));
 
@@ -38,11 +40,35 @@ function displayBooks() {
         editButton.textContent = "Edits";
         editButton.addEventListener("click", () => {
             localStorage.setItem("editBookIndex", index); 
-            window.location.href = "/EditBook.html";
-            // window.location.href = "file:///K:/ITI%204%20Months/Java%20Script/project/Library%20System/Details.html?id="+ index;
-
+            window.location.href = "EditBook.html";
+    
         });
         div.appendChild(editButton);
+
+
+        var DetailsButton = document.createElement("button");
+        DetailsButton.textContent = "Details";
+        DetailsButton.addEventListener("click", () => {
+            localStorage.setItem("DetailsBookIndex", index); 
+            window.location.href = "Details.html?id="+index;
+         
+        });
+        div.appendChild(DetailsButton);
+
+
+        var BookButton = document.createElement("button");
+        BookButton.textContent = "Book";
+        BookButton.addEventListener("click", () => {
+            localStorage.setItem("BookaBookIndex", index); 
+            if(user!=null){
+                window.location.href = "AddDookToUser.html?id="+index;
+            }else{
+                window.location.href = "login.html";
+            }
+            
+          
+        });
+        div.appendChild(BookButton);
 
         bookList.appendChild(div);
     });

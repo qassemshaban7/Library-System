@@ -49,60 +49,30 @@
     </style>
 </head>
 <body>
-    <h1>تفاصيل الكتاب</h1>
+    <h1>Details  </h1>
     <div class="container">
-        <!-- صورة الكتاب -->
+       
         <div class="book-image">
             <img id="book-image" src="" alt="صورة الكتاب">
         </div>
 
-        <!-- تفاصيل الكتاب -->
         <div id="book-details" class="details"></div>
     </div>
 
     <script>
-        // بيانات الكتب المخزنة في Local Storage (مثال)
-        // const books = [
-        //     { 
-        //         id: 1, 
-        //         title: "تعلم JavaScript", 
-        //         author: "مصطفى حافظ", 
-        //         year: 2023,
-        //         image: "https://via.placeholder.com/250x350.png?text=JavaScript+Book" 
-        //     },
-        //     { 
-        //         id: 2, 
-        //         title: "تعلم CSS", 
-        //         author: "أحمد علي", 
-        //         year: 2022,
-        //         image: "https://via.placeholder.com/250x350.png?text=CSS+Book" 
-        //     },
-        //     { 
-        //         id: 3, 
-        //         title: "تعلم HTML", 
-        //         author: "محمد سعيد", 
-        //         year: 2021,
-        //         image: "https://via.placeholder.com/250x350.png?text=HTML+Book" 
-        //     }
-        // ];
-            
-        // حفظ البيانات في Local Storage (مرة واحدة فقط)
-        // if (!localStorage.getItem("books")) {
-        //     localStorage.setItem("books", JSON.stringify(books));
-        // }
         var books=localStorage.getItem("books");
 
-        // دالة لجلب الـ ID من الـ URL
+       
         function getBookIdFromURL() {
             const params = new URLSearchParams(window.location.search);
             return params.get("id");
         }
 
-        // دالة للبحث عن الكتاب وعرض التفاصيل
+     
         function displayBookDetails() {
             const bookId = getBookIdFromURL();
             if (!bookId) {
-                alert("لا يوجد معرف للكتاب في الرابط!");
+                alert("We Don't find this book");
                 return;
             }
 
@@ -118,11 +88,11 @@
                 `;
                 document.getElementById("book-image").src = book.imageElement;
             } else {
-                document.getElementById("book-details").innerHTML = "<p>الكتاب غير موجود!</p>";
+                document.getElementById("book-details").innerHTML = "<p>this book is not Found</p>";
             }
         }
 
-        // عرض التفاصيل عند تحميل الصفحة
+        
         displayBookDetails();
     </script>
 </body>
