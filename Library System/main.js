@@ -35,10 +35,12 @@ function displayBooks() {
         div.appendChild(deleteButton);
 
         var editButton = document.createElement("button");
-        editButton.textContent = "details";
+        editButton.textContent = "Edits";
         editButton.addEventListener("click", () => {
             localStorage.setItem("editBookIndex", index); 
-            window.location.href = "file:///K:/ITI%204%20Months/Java%20Script/project/Library%20System/Details.html?id="+ index;
+            window.location.href = "/EditBook.html";
+            // window.location.href = "file:///K:/ITI%204%20Months/Java%20Script/project/Library%20System/Details.html?id="+ index;
+
         });
         div.appendChild(editButton);
 
@@ -75,7 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
             localStorage.setItem("books", JSON.stringify(books));
             // alert("book Added Successful!");
             e.target.reset();
-            window.location.href = "/Library System/index.html";
+            window.location.href = "index.html";
         });
     }
 });
