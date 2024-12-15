@@ -1,3 +1,5 @@
+
+
 var books = JSON.parse(localStorage.getItem("books"));
 
 var bookList = document.getElementById("book-list");
@@ -33,10 +35,10 @@ function displayBooks() {
         div.appendChild(deleteButton);
 
         var editButton = document.createElement("button");
-        editButton.textContent = "Edit";
+        editButton.textContent = "details";
         editButton.addEventListener("click", () => {
             localStorage.setItem("editBookIndex", index); 
-            window.location.href = "/Library System/EditBook.html";
+            window.location.href = "file:///K:/ITI%204%20Months/Java%20Script/project/Library%20System/Details.html?id="+ index;
         });
         div.appendChild(editButton);
 
