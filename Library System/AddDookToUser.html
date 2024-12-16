@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
     <style>
       body {
         font-family: Arial, sans-serif;
@@ -63,10 +64,25 @@
     </style>
   </head>
   <body>
+    <header>
+      <a href="home.html" style="text-decoration: none; color: white;"><h1 style=" color: white;">bookloop</h1></a>
+      <nav class="navbar">
+        <ul>
+          <li>
+            <a href="index.html"><i class="fas fa-home"></i> Home</a>
+          </li>
+          <li>
+            <a id="logout" href="login.html"
+              ><i class="fas fa-sign-out-alt"></i> Log Out</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
     <h1>Confirm Your booking</h1>
     <div class="container">
       <div class="book-image">
-        <img id="book-image" src="" alt="صورة الكتاب" />
+        <img id="book-image" src="" alt="a book image " />
       </div>
 
       <div id="book-details" class="details"></div>
@@ -115,14 +131,14 @@
           e.preventDefault();
           var loggedInUser = localStorage.getItem("loggedInUser");
           if (!loggedInUser) {
-            location.href("login.html");
+           window.location.href="login.html";
           }
-          var allBooks = JSON.parse(localStorage.getItem("books")) || [];
-          var userBooks = allBooks.filter(
-            (book) => book.userName === loggedInUser
-          );
+          const savedBooks = JSON.parse(localStorage.getItem("books"));
+          var paidbooks = JSON.parse(localStorage.getItem("paidbooks")) || [];
+         var book =savedBooks[getBookIdFromURL()];
           book.userName = loggedInUser.username;
-          userBooks += book;
+          paidbooks += book;
+          window.location.href="paidbooks.html";
         });
     </script>
   </body>

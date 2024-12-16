@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <header>
+        <a href="home.html" style="text-decoration: none; color: white;"><h1 style=" color: white;">bookloop</h1></a>
+        <nav class="navbar">
+          <ul>
+            <li>
+              <a href="index.html"><i class="fas fa-home"></i> Home</a>
+            </li>
+            <li>
+              <a id="logout" href="login.html"
+                ><i class="fas fa-sign-out-alt"></i> Log Out</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </header>
+      <div class="main">
+        <div id="book-list" class="book-grid">
+            <img class="" src="" alt="">
+        </div>
+      </div>
+      <footer>
+        <p>&copy; 2024 bookloop org. All rights reserved.</p>
+      </footer>
+
+<script>
+
+    var paidbooksdiv =document.getElementById("book-list");
+    var paidbooks=JSON.stringify( localStorage.getItem("paidbooks"));
+    for (const element of paidbooks) {
+        var img=document.createElement("img");
+        img.src=element.image;
+        document.getElementById("book-list").appendChild(img);
+    }
+
+
+</script>
+
+</body>
+</html>

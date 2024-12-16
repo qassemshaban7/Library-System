@@ -62,13 +62,25 @@ function displayBooks() {
         div.appendChild(img);
 
         var detailsButton = document.createElement("button");
-        detailsButton.textContent = "Details";
+        detailsButton.textContent = "more";
         detailsButton.addEventListener("click", () => {
             localStorage.setItem("DetailsBookIndex", index); 
             window.location.href = "Details.html?id=" + index;
         });
+
         div.appendChild(detailsButton);
 
+        var bookButton = document.createElement("button");
+        bookButton.textContent = "Book";
+        bookButton.addEventListener("click", () => {
+            localStorage.setItem("BookaBookIndex", index);
+            if (user != null) {
+                window.location.href = "AddDookToUser.html?id=" + index;
+            } else {
+                window.location.href = "login.html";
+            }
+        });
+        div.appendChild(bookButton); 
         bookList.appendChild(div);
     });
 }
