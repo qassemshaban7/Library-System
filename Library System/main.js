@@ -1,117 +1,126 @@
-
-var user =localStorage.getItem("loggedInUser");
-
-
-var books = JSON.parse(localStorage.getItem("books"));
-
+var user = localStorage.getItem("loggedInUser");
 var bookList = document.getElementById("book-list");
 
 function displayBooks() {
     var books = JSON.parse(localStorage.getItem("books")) || [];
-    var bookList = document.getElementById("book-list");
+    if (!bookList) {
+        console.error("Book list element not found");
+        return;
+    }
+
     bookList.innerHTML = "";
 
     books.forEach((book, index) => {
         var div = document.createElement("div");
         div.className = "book-card";
 
-        var bookInfo = document.createElement("p");
-        bookInfo.textContent = `${book.title} - ${book.author} - ${book.price}$`;
-        div.appendChild(bookInfo);
-
-        // var bookdes = document.createElement("p");
-        // bookdes.textContent = `${book.descreption}`;
-        // div.appendChild(bookdes);
-
         var img = document.createElement("img");
         img.src = book.imageElement;
         div.appendChild(img);
 
+        var titleElement = document.createElement("p");
+        titleElement.textContent = `Name: ${book.title}`;
+        div.appendChild(titleElement);
+
+        var priceElement = document.createElement("p");
+        priceElement.textContent = `Price: ${book.price}$`;
+        div.appendChild(priceElement);
+
+        var hrElement = document.createElement("hr");
+        div.appendChild(hrElement);
+        
+        var buttonContainer = document.createElement("div");
+        buttonContainer.className = "button-container";
+
         var deleteButton = document.createElement("button");
         deleteButton.textContent = "Delete";
         deleteButton.addEventListener("click", () => {
-            books.splice(index, 1); 
+            books.splice(index, 1);
             localStorage.setItem("books", JSON.stringify(books));
-            displayBooks(); 
+            displayBooks();
         });
-        div.appendChild(deleteButton);
+        buttonContainer.appendChild(deleteButton);
 
         var editButton = document.createElement("button");
-        editButton.textContent = "Edits";
+        editButton.textContent = "Edit";
         editButton.addEventListener("click", () => {
-            localStorage.setItem("editBookIndex", index); 
+            localStorage.setItem("editBookIndex", index);
             window.location.href = "EditBook.html";
-    
         });
-        div.appendChild(editButton);
+        buttonContainer.appendChild(editButton);
 
-
-        var DetailsButton = document.createElement("button");
-        DetailsButton.textContent = "Details";
-        DetailsButton.addEventListener("click", () => {
-            localStorage.setItem("DetailsBookIndex", index); 
-            window.location.href = "Details.html?id="+index;
-         
+        var detailsButton = document.createElement("button");
+        detailsButton.textContent = "Details";
+        detailsButton.addEventListener("click", () => {
+            localStorage.setItem("DetailsBookIndex", index);
+            window.location.href = "Details.html?id=" + index;
         });
-        div.appendChild(DetailsButton);
+        buttonContainer.appendChild(detailsButton);
 
-
-        var BookButton = document.createElement("button");
-        BookButton.textContent = "Book";
-        BookButton.addEventListener("click", () => {
-            localStorage.setItem("BookaBookIndex", index); 
-            if(user!=null){
-                window.location.href = "AddDookToUser.html?id="+index;
-            }else{
+        var bookButton = document.createElement("button");
+        bookButton.textContent = "Book";
+        bookButton.addEventListener("click", () => {
+            localStorage.setItem("BookaBookIndex", index);
+            if (user != null) {
+                window.location.href = "AddDookToUser.html?id=" + index;
+            } else {
                 window.location.href = "login.html";
             }
-            
-          
         });
-        div.appendChild(BookButton);
+        buttonContainer.appendChild(bookButton);
+
+        div.appendChild(buttonContainer);
 
         bookList.appendChild(div);
     });
 }
 
-
 document.addEventListener("DOMContentLoaded", displayBooks);
 
 
-document.addEventListener("DOMContentLoaded", () => {
-    var addBookForm = document.getElementById("add-book-form");
-    if (addBookForm) {
-        addBookForm.addEventListener("submit", (e) => {
-            e.preventDefault();
 
-            var title = document.getElementById("title").value;
-            var author = document.getElementById("author").value;
-            var imageElement = document.getElementById("image").value;
-            var price = document.getElementById("price").value;
-            var descreption = document.getElementById("descreption").value;
-            var avilablity = document.getElementById("avilablity").value;
+const searchBar = document.getElementById('searchBar');
+const searchResults = document.getElementById('searchResults');
 
-            var loggedInUser = localStorage.getItem("loggedInUser");
-            if (!loggedInUser) {
-                alert("You need to be logged in to add a book.");
-                return;
-            }
-            var books = JSON.parse(localStorage.getItem("books")) || [];
-            var userName = "";
-            books.push({ title, author, imageElement, price, descreption, avilablity , userName: loggedInUser });
+function getBooksFromLocalStorage() {
+    return JSON.parse(localStorage.getItem("books")) || [];
+}
 
-            localStorage.setItem("books", JSON.stringify(books));
-            // alert("book Added Successful!");
-            e.target.reset();
-            window.location.href = "index.html";
-        });
-    }
+searchBar.addEventListener('input', (e) => {
+    const searchTerm = e.target.value.toLowerCase();
+    const books = getBooksFromLocalStorage();
+    const filteredBooks = books.filter(book =>
+        book.title.toLowerCase().includes(searchTerm)
+    );
+
+    displaySearchResults(filteredBooks, searchTerm);
 });
 
+function displaySearchResults(results, searchTerm) {
+    searchResults.innerHTML = '';
 
+    if (searchTerm.trim() === '') {
+        searchResults.style.display = 'none';
+        return;
+    }
 
+    results.forEach(book => {
+        const li = document.createElement('li');
+        li.textContent = book.title; 
+        li.addEventListener('click', () => {
+            searchBar.value = book.title; 
+            searchResults.innerHTML = ''; 
+            searchResults.style.display = 'none'; 
+        });
+        searchResults.appendChild(li);
+    });
 
-
+    if (results.length > 0) {
+        searchResults.style.display = 'block';
+    } else {
+        searchResults.style.display = 'none';
+    }
+}
 
 
 ////! Local Storage 

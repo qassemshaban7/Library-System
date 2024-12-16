@@ -4,16 +4,40 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Library System</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Delius+Swash+Caps&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <header>
       <h1>Booking System</h1>
-      <nav>
-        <a href="index.html">Home</a>
-        <a href="AddBooK.html">Add New Book</a>
-        <a id="logout" href="login.html">Log Out</a>
+      <nav class="navbar">
+        <ul>
+          <li>
+            <a href="index.html"><i class="fa fa-home"></i> Home</a>
+          </li>
+          <li>
+            <a href="AddBooK.html"><i class="fa fa-plus"></i> Add New Book</a>
+          </li>
+          <li>
+            <a id="logout" href="login.html"
+              ><i class="fa fa-sign-out-alt"></i> Log Out</a
+            >
+          </li>
+        </ul>
       </nav>
+      <input type="text" id="searchBar" placeholder="Search for a book..." />
+      <ul id="searchResults"></ul>
     </header>
 
     <div class="main">

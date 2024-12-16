@@ -5,21 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Library System</title>
     <link rel="stylesheet" href="style.css" />
-    
+    <link
+      href="https://fonts.googleapis.com/css2?family=Delius+Swash+Caps&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
   </head>
   <body>
     <header>
       <h1>Booking System</h1>
-      <nav>
-        <a href="home.html">Home</a>
-        <a href="mybooks.html">My Books</a>
-        <a id="logout" href="login.html">Log Out</a>
+      <nav class="navbar">
+        <ul>
+          <li>
+            <a href="mybooks.html"><i class="fa fa-book"></i> Books</a>
+          </li>
+          <li>
+            <a id="logout" href="login.html"
+              ><i class="fa fa-sign-out-alt"></i> Log Out</a
+            >
+          </li>
+        </ul>
       </nav>
     </header>
 
     <div class="main">
       <div id="book-list" class="book-grid"></div>
-      
     </div>
     <footer>
       <p>&copy; 2024 Booking Library System. All rights reserved.</p>

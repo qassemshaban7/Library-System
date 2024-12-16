@@ -1,131 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #f4f4f9;
-        }
-        .container {
-            max-width: 800px;
-            margin: auto;
-            background: #fff;
-            padding: 20px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            display: flex;
-            align-items: flex-start;
-            gap: 20px;
-        }
-        .book-image {
-            flex: 1;
-            max-width: 250px;
-        }
-        .book-image img {
-            width: 100%;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        }
-        .details {
-            flex: 2;
-        }
-        h1 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 20px;
-        }
-        .details p {
-            margin: 10px 0;
-        }
-        .label {
-            font-weight: bold;
-            color: #555;
-        }
-        .divconfirm,.confirm{
-            text-align: center;
-            align-content: center;
-            height: 40px;
-            width: 100px;
-            color: rgb(0, 70, 31);
-            background-color: rgb(126, 250, 126);
-            border-radius: 20%;
-            text-decoration: none;
-
-        }
-        .divconfirm:hover,.confirm:hover{
-            background-color: rgb(75, 155, 75);
-        }
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background-color: #f4f4f9;
+      }
+      .container {
+        max-width: 800px;
+        margin: auto;
+        background: #fff;
+        padding: 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        display: flex;
+        align-items: flex-start;
+        gap: 20px;
+      }
+      .book-image {
+        flex: 1;
+        max-width: 250px;
+      }
+      .book-image img {
+        width: 100%;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      }
+      .details {
+        flex: 2;
+      }
+      h1 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 20px;
+      }
+      .details p {
+        margin: 10px 0;
+      }
+      .label {
+        font-weight: bold;
+        color: #555;
+      }
+      .divconfirm,
+      .confirm {
+        text-align: center;
+        align-content: center;
+        height: 40px;
+        width: 100px;
+        color: rgb(0, 70, 31);
+        background-color: rgb(126, 250, 126);
+        border-radius: 20%;
+        text-decoration: none;
+      }
+      .divconfirm:hover,
+      .confirm:hover {
+        background-color: rgb(75, 155, 75);
+      }
     </style>
-</head>
-<body>
-    
-    <h1>Confirm Your booking  </h1>
+  </head>
+  <body>
+    <h1>Confirm Your booking</h1>
     <div class="container">
+      <div class="book-image">
+        <img id="book-image" src="" alt="صورة الكتاب" />
+      </div>
 
-        <div class="book-image">
-            <img id="book-image" src="" alt="صورة الكتاب">
-        </div>
-
-        
-        <div id="book-details" class="details"></div>
-        <div class="divconfirm">
-            <a id="confirm" class="confirm" href="#">Confirm</a>
-        </div>
+      <div id="book-details" class="details"></div>
+      <div class="divconfirm">
+        <a id="confirm" class="confirm" href="#">Confirm</a>
+      </div>
     </div>
 
     <script>
-         var books=localStorage.getItem("books");
+      var books = localStorage.getItem("books");
 
-       
-function getBookIdFromURL() {
-    const params = new URLSearchParams(window.location.search);
-    return params.get("id");
-}
+      function getBookIdFromURL() {
+        const params = new URLSearchParams(window.location.search);
+        return params.get("id");
+      }
 
+      function displayBookDetails() {
+        const bookId = getBookIdFromURL();
+        if (!bookId) {
+          alert("We Don't find this book");
+          return;
+        }
 
-function displayBookDetails() {
-    const bookId = getBookIdFromURL();
-    if (!bookId) {
-        alert("We Don't find this book");
-        return;
-    }
+        const savedBooks = JSON.parse(localStorage.getItem("books"));
+        const book = savedBooks[getBookIdFromURL()];
 
-    const savedBooks = JSON.parse(localStorage.getItem("books"));
-    const book = savedBooks[getBookIdFromURL()];
-
-    if (book) {
-        document.getElementById("book-details").innerHTML = `
+        if (book) {
+          document.getElementById("book-details").innerHTML = `
             <p><span class="label">Name:</span> ${book.title}</p>
             <p><span class="label">Author:</span> ${book.author}</p>
             <p><span class="label">Price:</span> ${book.price}</p>
             <p><span class="label">Description:</span> ${book.descreption}</p>
         `;
-        document.getElementById("book-image").src = book.imageElement;
-    } else {
-        document.getElementById("book-details").innerHTML = "<p>this book is not Found</p>";
-    }
-}
+          document.getElementById("book-image").src = book.imageElement;
+        } else {
+          document.getElementById("book-details").innerHTML =
+            "<p>this book is not Found</p>";
+        }
+      }
 
+      displayBookDetails();
 
-     displayBookDetails();
-
-
-    document.getElementById("confirm").addEventListener("click",function(e){
-        e.preventDefault();     
-        var loggedInUser = localStorage.getItem("loggedInUser");
-    if (!loggedInUser) {
-        location.href("lodin.html")
-        
-    }
-        var allBooks = JSON.parse(localStorage.getItem("books")) || [];
-        var userBooks = allBooks.filter(book => book.userName === loggedInUser);
-        book.userName=loggedInUser.username;
-        userBooks+=book;
-    });
+      document
+        .getElementById("confirm")
+        .addEventListener("click", function (e) {
+          e.preventDefault();
+          var loggedInUser = localStorage.getItem("loggedInUser");
+          if (!loggedInUser) {
+            location.href("login.html");
+          }
+          var allBooks = JSON.parse(localStorage.getItem("books")) || [];
+          var userBooks = allBooks.filter(
+            (book) => book.userName === loggedInUser
+          );
+          book.userName = loggedInUser.username;
+          userBooks += book;
+        });
     </script>
-</body>
+  </body>
 </html>

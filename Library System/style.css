@@ -12,6 +12,8 @@ https://dotnethow.net/images/movies/movie-10.jpeg
 */
 
 body {
+  font-family: "Delius Swash Caps", cursive;
+  font-size: 1.3em;
   margin: 0;
   padding: 0;
   min-height: 100vh;
@@ -20,52 +22,149 @@ body {
 }
 
 header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background-color: #333;
   color: white;
-  text-align: center;
-  padding: 10px;
-  font-size: large;
+  padding: 20px;
+  font-size: 28px;
+  font-weight: bold;
+  letter-spacing: 1px;
 }
-header a{
-  background-color: #333;
-  color: blue;
+
+.navbar {
+  background-color: #444;
+  padding: 10px 15px;
   text-align: center;
-  padding: 10px;
-  font-size: large;
+  border-radius: 5px;
 }
+
+.navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar ul li {
+  display: inline-block;
+  margin: 0 15px;
+}
+
+.navbar ul li a {
+  display: block;
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 18px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbar ul li a:hover {
+  background-color: #28a745;
+  color: white;
+}
+
+#logout i {
+  color: #ff6347;
+}
+
+#logout:hover i {
+  color: white;
+}
+
+#searchBar {
+  width: 200px; 
+  padding: 10px;
+  margin: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+#searchResults {
+  
+  list-style-type: none;
+  padding: 0;
+  position: absolute; 
+  background: white;
+  border: 1px solid #ddd;
+  width: 200px; 
+  z-index: 1000; 
+  max-height: 200px; 
+  overflow-y: auto; 
+}
+
+#searchResults li {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  cursor: pointer; 
+}
+
+#searchResults li:hover {
+  background-color: #f0f0f0;
+}
+
 .main {
-  margin: 20px;
+  margin: 10px;
 }
 
 h1{
-  text-align: center;
-}
-.book-grid {
-  display: flex;
-  flex-wrap: wrap; 
-  gap: 15px; 
-  justify-content: flex-start; 
-  max-width: 100%; 
-  padding: 10px; 
-  font-weight: bold;
-  font-size: large;
-  flex: 1;
+  text-align: center; 
+  display: inline;
 }
 
 .book-card {
+  margin: 5px;
   background-color: white;
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 15px;
   text-align: center;
-  width: 300px; 
-  box-sizing: border-box;
+  width: 220px;
+  display: inline-block;
+  flex-direction: column; 
+  align-items: center; 
+}
+
+.book-card p {
+  margin: 5px 0; 
+  font-size: 16px;
 }
 
 .book-card img {
   width: 100%;
-  border-radius: 4px;
+  border-radius: 8px;
+  transition: transform 0.5s;
 }
+
+.book-card img:hover {
+  transform: scale(0.9);
+}
+
+.button-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; 
+  margin-top: 10px; 
+}
+
+.button-container button {
+  background-color: #4caf50; 
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  margin: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; 
+}
+
+.button-container button:hover {
+  background-color: #45a049;
+}
+
 
 .add-book-form{
   color: #000;

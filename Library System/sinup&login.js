@@ -1,4 +1,3 @@
-// تسجيل المستخدم
 const signupForm = document.getElementById("signup");
 if (signupForm) {
   signupForm.addEventListener("submit", (e) => {

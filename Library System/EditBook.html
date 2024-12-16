@@ -5,61 +5,77 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Edit a Book</title>
     <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Delius+Swash+Caps&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
   </head>
   <body>
     <header>
       <h1>Booking System</h1>
-      <nav>
-        <a href="index.html">Home</a>
-        <a id="logout" href="login.html">Log Out</a>
+      <nav class="navbar">
+        <ul>
+          <li>
+            <a href="index.html"><i class="fas fa-home"></i> Home</a>
+          </li>
+          <li>
+            <a id="logout" href="login.html"
+              ><i class="fas fa-sign-out-alt"></i> Log Out</a
+            >
+          </li>
+        </ul>
       </nav>
     </header>
     <h1>Edit a Book</h1>
     <div class="add-book-form">
-      <form id="add-book-form">
+      <form id="editBookForm">
         <input
           class="add-book-element"
           type="text"
           id="title"
           placeholder="Enter Book Name"
         /><br />
-        <span id="t-error"></span>
-        <br />
+        <span id="t-error"></span><br />
         <input
           class="add-book-element"
           type="text"
           id="author"
-          placeholder="Enter author Name"
+          placeholder="Enter Author Name"
         /><br />
-        <span id="a-error"></span>
-        <br />
+        <span id="a-error"></span><br />
         <input
           class="add-book-element"
           type="text"
           id="image"
-          placeholder="Enter image URL"
+          placeholder="Enter Image URL"
         /><br />
-        <span id="img-error"></span>
-        <br />
+        <span id="img-error"></span><br />
         <input
           class="add-book-element"
           type="number"
           id="price"
-          placeholder="Enter price of the book"
-        /><br /><span class="error" id="p-error"></span>
-        <br />
+          placeholder="Enter Price of the Book"
+        /><br />
+        <span class="error" id="p-error"></span><br />
         <textarea
           id="descreption"
           rows=""
           class="add-book-element"
-          placeholder="enter descreption to your book"
-        ></textarea>
-        <br />
-        <select class="add-book-element" type="radio" id="avilablity" required>
-          <option value="Avilable">Avilable</option>
-          <option value="NotAvilable">NotAvilable</option>
-        </select>
-        <br />
+          placeholder="Enter Description of Your Book"
+        ></textarea
+        ><br />
+        <select class="add-book-element" id="avilablity" required>
+          <option value="Available">Available</option>
+          <option value="NotAvailable">Not Available</option></select
+        ><br />
         <button class="save-book-button" id="add-book-button" type="submit">
           Save Edits
         </button>
@@ -75,9 +91,9 @@
     <footer>
       <p>&copy; 2024 Booking Library System. All rights reserved.</p>
     </footer>
-    <script src="validation.js"></script>
-    <script src="main.js"></script>
     <script src="edit.js"></script>
+    <script src="validation.js"></script>
     <script src="sinup&login.js"></script>
+    <script src="main.js"></script>
   </body>
 </html>
