@@ -33,8 +33,8 @@
       display: flex;
       align-items: flex-start;
       gap: 20px;">
-    <div class="book-image">
-      <img id="book-image" style="height: 500px;" src="" alt="صورة الكتاب" />
+    <div id="approved-books">
+      
     </div>
 
     <div id="book-details" class="details"></div>
@@ -46,24 +46,24 @@
 <script>
 
     
-    var cardBooks=JSON.parse(localStorage.getItem("cardBooks"));
-    Object.keys(cardBooks).forEach(key => {
-      const book = cardBooks[key];
-    
-        document.getElementById("book-details").innerHTML = `
-                    <p><span class="label">Name:</span> ${book.title}</p>
-                    <p><span class="label">Author:</span> ${book.author}</p>
-                    <p><span class="label">Price:</span> ${book.price}$</p>
-                    <p><span class="label">Description:</span> ${book.descreption}</p>
-                `;
-        document.getElementById("book-image").src = book.imageElement;
-    });
+function loadApprovedBooks() {
+      const approvedList = document.getElementById("approved-books");
+      const approvedBooks = JSON.parse(localStorage.getItem("approvedBooks")) || [];
+      approvedList.innerHTML = ""; // Clear previous list
+
+      approvedBooks.forEach(book => {
+        const listItem = document.createElement("li");
+        listItem.textContent = `${book.title} - $${book.price} (Status: ${book.status})`;
+        approvedList.appendChild(listItem);
+      });
+    }
     // for (const book of cardBooks) {
     //     var img=document.createElement("img");
     //     img.src=cardBooks[book];
     //     document.getElementById("book-list").appendChild(img);
     // }
-
+    
+    loadApprovedBooks();
 
 </script>
 

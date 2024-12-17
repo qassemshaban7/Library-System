@@ -12,7 +12,7 @@ var priceError = document.getElementById('p-error');
 
 const urlPattern = /^(https?:\/\/)?(www\.)?([a-zA-Z0-9-]+\.[a-zA-Z]{2,})(\/[^\s]*)?$/;  
 var REG = new RegExp('^[a-zA-Z]$');
-var reqnum=new RegExp('^[1-9]$')
+var reqnum=new RegExp('^[0-9]$')
 //call function
 
 validate(tInput,TError,"title",REG)

@@ -1,3 +1,4 @@
+
 var user = localStorage.getItem("loggedInUser");
 
 document.addEventListener("DOMContentLoaded", () => {

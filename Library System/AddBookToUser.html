@@ -1,157 +1,278 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css" />
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        margin: 20px;
-        background-color: #f4f4f9;
-      }
-      .container {
-        max-width: 800px;
-        margin: auto;
-        background: #fff;
-        padding: 20px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        border-radius: 8px;
-        display: flex;
-        align-items: flex-start;
-        gap: 20px;
-      }
-      .book-image {
-        flex: 1;
-        max-width: 250px;
-      }
-      .book-image img {
-        width: 100%;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-      }
-      .details {
-        flex: 2;
-      }
-      h1 {
-        text-align: center;
-        color: #333;
-        margin-bottom: 20px;
-      }
-      .details p {
-        margin: 10px 0;
-      }
-      .label {
-        font-weight: bold;
-        color: #555;
-      }
-      .divconfirm,
-      .confirm {
-        text-align: center;
-        align-content: center;
-        height: 40px;
-        width: 100px;
-        color: rgb(0, 70, 31);
-        background-color: rgb(126, 250, 126);
-        border-radius: 20%;
-        text-decoration: none;
-      }
-      .divconfirm:hover,
-      .confirm:hover {
-        background-color: rgb(75, 155, 75);
-      }
-    </style>
-  </head>
-  <body>
-    <header>
-      <a href="home.html" style="text-decoration: none; color: white;"><h1 style=" color: white;">bookloop</h1></a>
-      <nav class="navbar">
-        <ul>
-          <li>
-            <a href="index.html"><i class="fas fa-home"></i> Home</a>
-          </li>
-          <li>
-            <a id="logout" href="login.html"
-              ><i class="fas fa-sign-out-alt"></i> Log Out</a
-            >
-          </li>
-        </ul>
-      </nav>
-    </header>
-    <h1>Confirm Your booking</h1>
-    <div class="container">
-      <div class="book-image">
-        <img id="book-image" src="" alt="a book image " />
-      </div>
 
-      <div id="book-details" class="details"></div>
-      <div class="divconfirm">
-        <a id="confirm"  class="confirm" href="#">addtoCard</a>
-      </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f4f4f9;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: #fff;
+      padding: 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+    }
+
+    .book-image {
+      flex: 1;
+      max-width: 250px;
+    }
+
+    .book-image img {
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .details {
+      flex: 2;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .details p {
+      margin: 10px 0;
+    }
+
+    .label {
+      font-weight: bold;
+      color: #555;
+    }
+
+    .divconfirm,
+    .confirm {
+      text-align: center;
+      align-content: center;
+      height: 40px;
+      width: 100px;
+      color: rgb(0, 70, 31);
+      background-color: rgb(126, 250, 126);
+      border-radius: 20%;
+      text-decoration: none;
+    }
+
+    .divconfirm:hover,
+    .confirm:hover {
+     
+      background-color: rgb(75, 155, 75);
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <a href="home.html" style="text-decoration: none; color: white;">
+      <h1 style=" color: white;">bookloop</h1>
+    </a>
+    <nav class="navbar">
+      <ul>
+        <li>
+          <a href="index.html"><i class="fas fa-home"></i> Home</a>
+        </li>
+        <li>
+          <a id="logout" href="login.html"><i class="fas fa-sign-out-alt"></i> Log Out</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <h1>Confirm Your booking</h1>
+  <div class="container">
+    <div class="book-image">
+      <img id="book-image" src="" alt="a book image " />
     </div>
 
-    <script>
-      var books = localStorage.getItem("books");
+    <div id="book-details" class="details"></div>
+    <div class="divconfirm">
+      <a id="confirm" class="confirm" href="#">addtoCard</a>
+    </div>
+  </div>
 
-      function getBookIdFromURL() {
-        const params = new URLSearchParams(window.location.search);
-        return params.get("id");
+  <script>
+    var books = localStorage.getItem("books");
+    const savedBooks = JSON.parse(localStorage.getItem("books"));
+    const book = savedBooks[getBookIdFromURL()];
+    displayBookDetails()
+    function getBookIdFromURL() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get("id");
+    }
+
+    function displayBookDetails() {
+
+      const bookId = getBookIdFromURL();
+      if (!bookId) {
+        alert("We Don't find this book");
+        return;
       }
 
-      function displayBookDetails() {
+     
 
-        const bookId = getBookIdFromURL();
-        if (!bookId) {
-          alert("We Don't find this book");
-          return;
-        }
-
-        const savedBooks = JSON.parse(localStorage.getItem("books"));
-        const book = savedBooks[getBookIdFromURL()];
-
-        if (book) {
-          document.getElementById("book-details").innerHTML = `
+      if (book) {
+        document.getElementById("book-details").innerHTML = `
             <p><span class="label">Name:</span> ${book.title}</p>
             <p><span class="label">Author:</span> ${book.author}</p>
             <p><span class="label">Price:</span> ${book.price}</p>
             <p><span class="label">Description:</span> ${book.descreption}</p>
         `;
-          document.getElementById("book-image").src = book.imageElement;
-        } else {
-          document.getElementById("book-details").innerHTML =
-            "<p>this book is not Found</p>";
-        }
+        document.getElementById("book-image").src = book.imageElement;
+      } else {
+        document.getElementById("book-details").innerHTML =
+          "<p>this book is not Found</p>";
       }
+    }
 
-      displayBookDetails();
+    
 
 
-      const storageKey = "cartBooks";
+  const selectedBooks = [];
+    document
+      .getElementById("confirm")
+      .addEventListener("click", function (e) {
+        e.preventDefault();
+        var loggedInUser = localStorage.getItem("loggedInUser");
+        if (!loggedInUser) {
+          window.location.href = "login.html";
+        }
+        
+        selectBook(getBookIdFromURL(), book.title, book.price)
+        saveToLocal()
+        document.getElementById("confirm").style=" display: none;"
+      });
 
+
+    function selectBook(id, title, price) {
       
+        selectedBooks.push({ id, title, price, status: "pending" });
+     
+  }
+    function saveToLocal() {
+      localStorage.setItem("pendingBooks", JSON.stringify(selectedBooks));
+      alert("Books submitted for admin approval!");
+    }
 
-      document
-        .getElementById("confirm")
-        .addEventListener("click", function (e) {
-          e.preventDefault();
-          var loggedInUser = localStorage.getItem("loggedInUser");
-          if (!loggedInUser) {
-           window.location.href="login.html";
-          }
+   
+  </script>
+</body>
 
-
-        //   const savedBooks = JSON.parse(localStorage.getItem("books"));
-        //  var book =savedBooks[getBookIdFromURL()];
-          
-          
-        //  const cardBooks =JSON.stringify(localStorage.getItem("cardBooks"))||{};
-        //  cardBooks[book.title]=book;
-        //  localStorage.setItem("cardBooks",JSON.stringify(cardBooks));
-          
-         
-        //   window.location.href="paidbooks.html";
-        });
-    </script>
-  </body>
 </html>
+
+
+<!-- <body>
+  <div id="books-container"></div>
+  <button onclick="saveToLocal()">Submit for Approval</button>
+
+  <h2>Admin Panel: Approve Books</h2>
+  <div id="admin-panel"></div>
+  <button onclick="approveBooks()">Approve Selected</button>
+
+  <h2>User: Approved Books</h2>
+  <ul id="approved-books"></ul>
+
+  <script>
+    // Step 1: Books Data
+    const books = [
+      { id: 1, title: "Book One", price: 10 },
+      { id: 2, title: "Book Two", price: 15 },
+      { id: 3, title: "Book Three", price: 20 }
+    ];
+
+    // Step 2: User - Select Books
+    const selectedBooks = [];
+    const booksContainer = document.getElementById("books-container");
+
+    // Render Books for Selection
+    books.forEach(book => {
+      const bookElement = document.createElement("div");
+      bookElement.innerHTML = `
+        <input type="checkbox" id="book-${book.id}" value="${book.id}" onclick="selectBook(${book.id}, '${book.title}', ${book.price})">
+        <label>${book.title} - $${book.price}</label>
+      `;
+      booksContainer.appendChild(bookElement);
+    });
+
+    // Add/Remove Selected Books
+    function selectBook(id, title, price) {
+      const index = selectedBooks.findIndex(b => b.id === id);
+      if (index === -1) {
+        selectedBooks.push({ id, title, price, status: "pending" });
+      } else {
+        selectedBooks.splice(index, 1);
+      }
+    }
+
+    // Save Selected Books to localStorage
+    function saveToLocal() {
+      localStorage.setItem("pendingBooks", JSON.stringify(selectedBooks));
+      alert("Books submitted for admin approval!");
+    }
+
+    // Step 3: Admin Panel - Approve Books
+    function loadAdminPanel() {
+      const adminPanel = document.getElementById("admin-panel");
+      const pendingBooks = JSON.parse(localStorage.getItem("pendingBooks")) || [];
+      adminPanel.innerHTML = ""; // Clear previous
+
+      pendingBooks.forEach(book => {
+        const bookElement = document.createElement("div");
+        bookElement.innerHTML = `
+          <input type="checkbox" id="approve-${book.id}" value="${book.id}">
+          <label>${book.title} - $${book.price}</label>
+        `;
+        adminPanel.appendChild(bookElement);
+      });
+    }
+
+    // Approve Selected Books
+    function approveBooks() {
+      const pendingBooks = JSON.parse(localStorage.getItem("pendingBooks")) || [];
+      const approvedBooks = [];
+
+      pendingBooks.forEach(book => {
+        const checkbox = document.getElementById(`approve-${book.id}`);
+        if (checkbox && checkbox.checked) {
+          book.status = "approved";
+          approvedBooks.push(book);
+        }
+      });
+
+      // Save Approved Books and Clear Pending
+      localStorage.setItem("approvedBooks", JSON.stringify(approvedBooks));
+      localStorage.removeItem("pendingBooks");
+      alert("Books approved!");
+      loadApprovedBooks();
+      loadAdminPanel(); // Refresh Admin Panel
+    }
+
+    // Step 4: User - View Approved Books
+    function loadApprovedBooks() {
+      const approvedList = document.getElementById("approved-books");
+      const approvedBooks = JSON.parse(localStorage.getItem("approvedBooks")) || [];
+      approvedList.innerHTML = ""; // Clear previous list
+
+      approvedBooks.forEach(book => {
+        const listItem = document.createElement("li");
+        listItem.textContent = `${book.title} - $${book.price} (Status: ${book.status})`;
+        approvedList.appendChild(listItem);
+      });
+    }
+
+    // Initial Load for Admin and User Panels
+    loadAdminPanel();
+    loadApprovedBooks();
+   -->

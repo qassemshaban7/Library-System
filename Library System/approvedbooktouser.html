@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Delius+Swash+Caps&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+
+</head>
+<body>
+    <header>
+        <a href="home.html" style="text-decoration: none; color: white"
+          ><h1>bookloop</h1></a
+        >
+        <nav class="navbar">
+          <ul>
+            <li>
+              <a href="sinUp.html"><i class="fas fa-user-plus"></i> Sign Up</a>
+            </li>
+            <li>
+              <a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a>
+            </li>
+          </ul>
+        </nav>
+       
+      </header>
+      <div
+      style="
+        max-width: 800px;
+        margin: auto;
+        background: #fff;
+        padding: 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        display: flex;
+        align-items: flex-start;
+        gap: 20px;
+      "
+    >
+      <div class="book-image">
+        <img id="book-image" height="400px" width="250px" src="" alt="صورة الكتاب" />
+      </div>
+
+      <div id="book-details" class="details"></div>
+    </div> 
+    <div  style="text-align: center;">
+     
+        
+    </div>
+    <footer>
+        <p>&copy; 2024 Booking Library System. All rights reserved.</p>
+      </footer>
+
+
+<script>
+
+var books = JSON.parse( localStorage.getItem("books"));
+var approvalbooks = JSON.parse( localStorage.getItem("approvedBooks"));
+var usersapprovedbooks=[];
+for (let i = 0; i < approvalbooks.length; i++) {
+    usersapprovedbooks.push(books[approvalbooks[i].id]) ;
+}
+
+
+
+
+// Object.keys(books).forEach(id => {
+//     usersapprovedbooks.push(books[id]) ;
+// });
+// for (const book in books["id"]) {
+//     usersapprovedbooks.push(books[book.id]) ;
+// }
+// books.forEach(element => {
+//     ersapprovedbooks.push(books[element.id]) ;
+// });
+
+
+
+usersapprovedbooks.forEach(approvdbook => {
+    if (approvdbook) {
+    document.getElementById("book-details").innerHTML = `
+              <p><span class="label">Name:</span> ${approvdbook.title}</p>
+              <p><span class="label">Author:</span> ${approvdbook.author}</p>
+              <p><span class="label">Price:</span> ${approvdbook.price}$</p>
+              <p><span class="label">Description:</span> ${approvdbook.descreption}</p>
+          `;
+    document.getElementById("book-image").src = approvdbook.imageElement;
+  } else {
+    document.getElementById("book-details").innerHTML =
+      "<p>this book is not Found</p>";
+  }
+});
+
+
+
+  
+
+</script>
+
+
+</body>
+</html>
