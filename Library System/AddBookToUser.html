@@ -100,6 +100,7 @@
       }
 
       function displayBookDetails() {
+
         const bookId = getBookIdFromURL();
         if (!bookId) {
           alert("We Don't find this book");
@@ -140,16 +141,16 @@
           }
 
 
-          const savedBooks = JSON.parse(localStorage.getItem("books"));
-         var book =savedBooks[getBookIdFromURL()];
+        //   const savedBooks = JSON.parse(localStorage.getItem("books"));
+        //  var book =savedBooks[getBookIdFromURL()];
           
           
-         const cardBooks =(localStorage.getItem("cardBooks"))||{};
-         cardBooks[book.title]=book;
-         localStorage.setItem("cardBooks",JSON.stringify(cardBooks));
+        //  const cardBooks =JSON.stringify(localStorage.getItem("cardBooks"))||{};
+        //  cardBooks[book.title]=book;
+        //  localStorage.setItem("cardBooks",JSON.stringify(cardBooks));
           
          
-          window.location.href="paidbooks.html";
+        //   window.location.href="paidbooks.html";
         });
     </script>
   </body>
