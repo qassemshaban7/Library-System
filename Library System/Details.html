@@ -1,119 +1,133 @@
 <!DOCTYPE html>
 <html lang="ar">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>تفاصيل الكتاب</title>
-
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-      background-color: #f4f4f9;
-    }
-
-    .book-image {
-      flex: 1;
-      max-width: 250px;
-    }
-
-    .book-image img {
-      width: 100%;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    }
-
-    .details {
-      flex: 2;
-    }
-
-    h1 {
-      text-align: center;
-      color: #333;
-      margin-bottom: 20px;
-    }
-
-    .details p {
-      margin: 10px 0;
-    }
-
-    .label {
-      font-weight: bold;
-      color: #555;
-    }
-  </style>
-  <link rel="stylesheet" href="style.css" />
-</head>
-
-<body>
-  <header>
-    <a href="home.html" style="text-decoration: none; color: white;">
-      <h1 style="color: white;">bookloop</h1>
-    </a>
-    <nav class="navbar">
-      <ul>
-        <li>
-          <a href="index.html"><i class="fas fa-home"></i> Home</a>
-        </li>
-        <li>
-          <a id="logout" href="login.html"><i class="fas fa-sign-out-alt"></i> Log Out</a>
-        </li>
-      </ul>
-    </nav>
-  </header>
-  <h1>Details</h1>
-  <div style="
-      max-width: 800px;
-      margin: auto;
-      background: #fff;
-      padding: 20px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      border-radius: 8px;
-      display: flex;
-      align-items: flex-start;
-      gap: 20px;">
-    <div class="book-image">
-      <img id="book-image" src="" alt="صورة الكتاب" />
-    </div>
-
-    <div id="book-details" class="details"></div>
-  </div>
-
-  <script>
-    var books = localStorage.getItem("books");
-
-    function getBookIdFromURL() {
-      const params = new URLSearchParams(window.location.search);
-      return params.get("id");
-    }
-
-    function displayBookDetails() {
-      const bookId = getBookIdFromURL();
-      if (!bookId) {
-        alert("We Don't find this book");
-        return;
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>تفاصيل الكتاب</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Delius+Swash+Caps&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background-color: #f4f4f9;
       }
 
-      const savedBooks = JSON.parse(localStorage.getItem("books"));
-      const book = savedBooks[getBookIdFromURL()];
+      .book-image {
+        flex: 1;
+        max-width: 250px;
+      }
 
-      if (book) {
-        document.getElementById("book-details").innerHTML = `
+      .book-image img {
+        width: 100%;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      }
+
+      .details {
+        flex: 2;
+      }
+
+      h1 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 20px;
+      }
+
+      .details p {
+        margin: 10px 0;
+      }
+
+      .label {
+        font-weight: bold;
+        color: #555;
+      }
+    </style>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <header>
+      <a href="home.html" style="text-decoration: none; color: white">
+        <h1 style="color: white">bookloop</h1>
+      </a>
+      <nav class="navbar">
+        <ul>
+          <li>
+            <a href="mybooks.html"><i class="fas fa-home"></i> Home</a>
+          </li>
+          <li>
+            <a id="logout" href="login.html"
+              ><i class="fas fa-sign-out-alt"></i> Log Out</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <h1>Details</h1>
+    <div
+      style="
+        max-width: 800px;
+        margin: auto;
+        background: #fff;
+        padding: 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        display: flex;
+        align-items: flex-start;
+        gap: 20px;
+      "
+    >
+      <div class="book-image">
+        <img id="book-image" src="" alt="صورة الكتاب" />
+      </div>
+
+      <div id="book-details" class="details"></div>
+    </div>
+
+    <script>
+      var books = localStorage.getItem("books");
+
+      function getBookIdFromURL() {
+        const params = new URLSearchParams(window.location.search);
+        return params.get("id");
+      }
+
+      function displayBookDetails() {
+        const bookId = getBookIdFromURL();
+        if (!bookId) {
+          alert("We Don't find this book");
+          return;
+        }
+
+        const savedBooks = JSON.parse(localStorage.getItem("books"));
+        const book = savedBooks[getBookIdFromURL()];
+
+        if (book) {
+          document.getElementById("book-details").innerHTML = `
                     <p><span class="label">Name:</span> ${book.title}</p>
                     <p><span class="label">Author:</span> ${book.author}</p>
                     <p><span class="label">Price:</span> ${book.price}$</p>
                     <p><span class="label">Description:</span> ${book.descreption}</p>
                 `;
-        document.getElementById("book-image").src = book.imageElement;
-      } else {
-        document.getElementById("book-details").innerHTML =
-          "<p>this book is not Found</p>";
+          document.getElementById("book-image").src = book.imageElement;
+        } else {
+          document.getElementById("book-details").innerHTML =
+            "<p>this book is not Found</p>";
+        }
       }
-    }
 
-    displayBookDetails();
-  </script>
-</body>
-
+      displayBookDetails();
+    </script>
+  </body>
 </html>

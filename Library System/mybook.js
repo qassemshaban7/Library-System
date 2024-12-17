@@ -86,3 +86,47 @@ function displayBooks() {
 }
 
 document.addEventListener("DOMContentLoaded", displayBooks);
+
+
+const searchBar = document.getElementById('searchBar');
+const searchResults = document.getElementById('searchResults');
+
+function getBooksFromLocalStorage() {
+    return JSON.parse(localStorage.getItem("books")) || [];
+}
+
+searchBar.addEventListener('input', (e) => {
+    const searchTerm = e.target.value.toLowerCase();
+    const books = getBooksFromLocalStorage();
+    const filteredBooks = books.filter(book =>
+        book.title.toLowerCase().includes(searchTerm)
+    );
+
+    displaySearchResults(filteredBooks, searchTerm);
+});
+
+function displaySearchResults(results, searchTerm) {
+    searchResults.innerHTML = '';
+
+    if (searchTerm.trim() === '') {
+        searchResults.style.display = 'none';
+        return;
+    }
+
+    results.forEach(book => {
+        const li = document.createElement('li');
+        li.textContent = book.title; 
+        li.addEventListener('click', () => {
+            searchBar.value = book.title; 
+            searchResults.innerHTML = ''; 
+            searchResults.style.display = 'none'; 
+        });
+        searchResults.appendChild(li);
+    });
+
+    if (results.length > 0) {
+        searchResults.style.display = 'block';
+    } else {
+        searchResults.style.display = 'none';
+    }
+}
