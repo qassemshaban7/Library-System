@@ -87,7 +87,7 @@
 
       <div id="book-details" class="details"></div>
       <div class="divconfirm">
-        <a id="confirm" class="confirm" href="#">Confirm</a>
+        <a id="confirm"  class="confirm" href="#">addtoCard</a>
       </div>
     </div>
 
@@ -125,6 +125,11 @@
 
       displayBookDetails();
 
+
+      const storageKey = "cartBooks";
+
+      
+
       document
         .getElementById("confirm")
         .addEventListener("click", function (e) {
@@ -133,11 +138,17 @@
           if (!loggedInUser) {
            window.location.href="login.html";
           }
+
+
           const savedBooks = JSON.parse(localStorage.getItem("books"));
-          var paidbooks = JSON.parse(localStorage.getItem("paidbooks")) || [];
          var book =savedBooks[getBookIdFromURL()];
-          book.userName = loggedInUser.username;
-          paidbooks += book;
+          
+          
+         const cardBooks =(localStorage.getItem("cardBooks"))||{};
+         cardBooks[book.title]=book;
+         localStorage.setItem("cardBooks",JSON.stringify(cardBooks));
+          
+         
           window.location.href="paidbooks.html";
         });
     </script>

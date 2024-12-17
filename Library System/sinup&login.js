@@ -53,6 +53,7 @@ if (loginForm) {
   });
 }
 
+
 document.getElementById("logout").addEventListener("click", (e) => {
   e.preventDefault(); 
   logout(); 
@@ -62,4 +63,3 @@ function logout() {
   localStorage.removeItem("loggedInUser"); 
   window.location.href = "login.html";
 }
-

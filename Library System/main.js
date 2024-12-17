@@ -62,7 +62,7 @@ function displayBooks() {
         bookButton.addEventListener("click", () => {
             localStorage.setItem("BookaBookIndex", index);
             if (user != null) {
-                window.location.href = "AddDookToUser.html?id=" + index;
+                window.location.href = "AddBookToUser.html?id=" + index;
             } else {
                 window.location.href = "login.html";
             }

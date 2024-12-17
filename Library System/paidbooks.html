@@ -22,24 +22,51 @@
           </ul>
         </nav>
       </header>
-      <div class="main">
-        <div id="book-list" class="book-grid">
-            <img class="" src="" alt="">
-        </div>
-      </div>
+      
+      <div style="
+      max-width: 800px;
+      margin: auto;
+      background: #fff;
+      padding: 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;">
+    <div class="book-image">
+      <img id="book-image" style="height: 500px;" src="" alt="صورة الكتاب" />
+    </div>
+
+    <div id="book-details" class="details"></div>
+  </div>
       <footer>
         <p>&copy; 2024 bookloop org. All rights reserved.</p>
       </footer>
 
 <script>
 
-    var paidbooksdiv =document.getElementById("book-list");
-    var paidbooks=JSON.stringify( localStorage.getItem("paidbooks"));
-    for (const element of paidbooks) {
-        var img=document.createElement("img");
-        img.src=element.image;
-        document.getElementById("book-list").appendChild(img);
-    }
+    
+    var cardBooks=JSON.parse(localStorage.getItem("cardBooks"));
+    Object.keys(cardBooks).forEach(key => {
+      const book = cardBooks[key];
+      // var img=document.createElement("img");
+      //   img.src=book.imageElement;
+        
+        // document.getElementById("book-list").appendChild(img);
+
+        document.getElementById("book-details").innerHTML = `
+                    <p><span class="label">Name:</span> ${book.title}</p>
+                    <p><span class="label">Author:</span> ${book.author}</p>
+                    <p><span class="label">Price:</span> ${book.price}$</p>
+                    <p><span class="label">Description:</span> ${book.descreption}</p>
+                `;
+        document.getElementById("book-image").src = book.imageElement;
+    });
+    // for (const book of cardBooks) {
+    //     var img=document.createElement("img");
+    //     img.src=cardBooks[book];
+    //     document.getElementById("book-list").appendChild(img);
+    // }
 
 
 </script>
