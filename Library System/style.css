@@ -62,7 +62,7 @@ header h1 {
   border-radius: 4px;
   outline: none;
 }
-
+/* 
 #searchResults {
   list-style-type: none;
   padding: 0;
@@ -86,9 +86,10 @@ header h1 {
 #searchResults li:hover {
   background-color: #f0f0f0;
   color: blue;
-}
+} */
 
 .main {
+  flex: 1;
   margin: 10px;
 }
 
@@ -145,6 +146,49 @@ h1{
 
 .button-container button:hover {
   background-color: #45a049;
+}
+
+.btn {
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 5px;
+  text-transform: uppercase;
+}
+
+.btn-details {
+  background-color: #3498db;
+  color: white;
+}
+
+.btn-details:hover {
+  background-color: #2980b9;
+}
+
+.btn-book {
+  background-color: #2ecc71; 
+  color: white;
+}
+
+.btn-book:hover {
+  background-color: #27ae60;
+}
+
+.btn-favorite {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.btn-favorite:hover {
+  background-color: #c0392b; 
+}
+
+.btn:hover {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 
@@ -239,5 +283,6 @@ footer{
   background-color: #333;
   color: white;
   text-align: center;
-  padding: 10px 0;
+  /* padding: 10px 0; */
 }
+

@@ -1,8 +1,10 @@
 var user = localStorage.getItem("loggedInUser");
 var bookList = document.getElementById("book-list");
 
-function displayBooks() {
-    var books = JSON.parse(localStorage.getItem("books")) || [];
+function displayBooks(books = null) {
+    var allBooks = JSON.parse(localStorage.getItem("books")) || [];
+    var booksToDisplay = books || allBooks;
+
     if (!bookList) {
         console.error("Book list element not found");
         return;
@@ -10,7 +12,7 @@ function displayBooks() {
 
     bookList.innerHTML = "";
 
-    books.forEach((book, index) => {
+    booksToDisplay.forEach((book, index) => {
         var div = document.createElement("div");
         div.className = "book-card";
 
@@ -35,8 +37,8 @@ function displayBooks() {
         var deleteButton = document.createElement("button");
         deleteButton.textContent = "Delete";
         deleteButton.addEventListener("click", () => {
-            books.splice(index, 1);
-            localStorage.setItem("books", JSON.stringify(books));
+            allBooks.splice(index, 1);
+            localStorage.setItem("books", JSON.stringify(allBooks));
             displayBooks();
         });
         buttonContainer.appendChild(deleteButton);
@@ -62,7 +64,7 @@ function displayBooks() {
         bookButton.addEventListener("click", () => {
             localStorage.setItem("BookaBookIndex", index);
             if (user != null) {
-                window.location.href = "AddBookToUser.html?id=" + index;
+                window.location.href = "AddDookToUser.html?id=" + index;
             } else {
                 window.location.href = "login.html";
             }
@@ -70,57 +72,27 @@ function displayBooks() {
         buttonContainer.appendChild(bookButton);
 
         div.appendChild(buttonContainer);
-
         bookList.appendChild(div);
     });
 }
 
-document.addEventListener("DOMContentLoaded", displayBooks);
+const searchBar = document.getElementById("searchBar");
 
-
-
-const searchBar = document.getElementById('searchBar');
-const searchResults = document.getElementById('searchResults');
-
-function getBooksFromLocalStorage() {
-    return JSON.parse(localStorage.getItem("books")) || [];
-}
-
-searchBar.addEventListener('input', (e) => {
+searchBar.addEventListener("input", (e) => {
     const searchTerm = e.target.value.toLowerCase();
-    const books = getBooksFromLocalStorage();
-    const filteredBooks = books.filter(book =>
+    const books = JSON.parse(localStorage.getItem("books")) || [];
+
+    const filteredBooks = books.filter((book) =>
         book.title.toLowerCase().includes(searchTerm)
     );
 
-    displaySearchResults(filteredBooks, searchTerm);
+    displayBooks(filteredBooks);
 });
 
-function displaySearchResults(results, searchTerm) {
-    searchResults.innerHTML = '';
+document.addEventListener("DOMContentLoaded", () => {
+    displayBooks();
+});
 
-    if (searchTerm.trim() === '') {
-        searchResults.style.display = 'none';
-        return;
-    }
-
-    results.forEach(book => {
-        const li = document.createElement('li');
-        li.textContent = book.title; 
-        li.addEventListener('click', () => {
-            searchBar.value = book.title; 
-            searchResults.innerHTML = ''; 
-            searchResults.style.display = 'none'; 
-        });
-        searchResults.appendChild(li);
-    });
-
-    if (results.length > 0) {
-        searchResults.style.display = 'block';
-    } else {
-        searchResults.style.display = 'none';
-    }
-}
 
 
 ////! Local Storage 

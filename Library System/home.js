@@ -3,6 +3,7 @@ var bookList = document.getElementById("book-list");
 
 function displayBooks(books = null) {
     var allBooks = JSON.parse(localStorage.getItem("books")) || [];
+
     var displayableBooks = books || allBooks;
 
     if (!bookList) {
@@ -33,46 +34,14 @@ function displayBooks(books = null) {
         });
         div.appendChild(detailsButton);
 
-        var bookButton = document.createElement("button");
-        bookButton.innerHTML = '<i class="fa fa-book"></i> Book';
-        bookButton.className = "btn btn-book";
-        bookButton.addEventListener("click", () => {
-            localStorage.setItem("BookaBookIndex", index);
-            if (user != null) {
-                window.location.href = "AddDookToUser.html?id=" + index;
-            } else {
-                window.location.href = "login.html";
-            }
-        });
-        div.appendChild(bookButton);
-
-        var favoriteButton = document.createElement("button");
-        favoriteButton.innerHTML = '<i class="fa fa-heart"></i> Add to Favorite';
-        favoriteButton.className = "btn btn-favorite";
-        favoriteButton.addEventListener("click", () => addToFavorites(book));
-        div.appendChild(favoriteButton);
-
         bookList.appendChild(div);
-        
     });
-}
-
-function addToFavorites(book) {
-    let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-    const alreadyExists = favorites.some(fav => fav.title === book.title);
-
-    if (!alreadyExists) {
-        favorites.push(book);
-        localStorage.setItem("favorites", JSON.stringify(favorites));
-        alert("Book added to favorites!");
-    } else {
-        alert("This book is already in favorites.");
-    }
 }
 
 document.addEventListener("DOMContentLoaded", () => displayBooks());
 
 const searchBar = document.getElementById('searchBar');
+
 searchBar.addEventListener('input', (e) => {
     const searchTerm = e.target.value.toLowerCase();
     const books = JSON.parse(localStorage.getItem("books")) || [];
