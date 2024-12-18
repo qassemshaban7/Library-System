@@ -28,28 +28,43 @@
         <nav class="navbar">
           <ul>
             <li>
-              <a href="sinUp.html"><i class="fas fa-user-plus"></i> Sign Up</a>
+              <a href="index.html"> Home</a>
             </li>
             <li>
-              <a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a>
+              <a href="login.html"><i class="fas fa-sign-in-alt"></i> logout</a>
             </li>
           </ul>
         </nav>
        
       </header>
     
-    <div id="adminPanel" style="text-align: center;">
-        <!-- <label id =></label> -->
-
-        
-    </div>
-    <div  style="text-align: center;">
-        <Button onclick="approveBooks()" style="background-color: green; color: black;" >Done</Button>
-
-        
-    </div>
+   
+    <table style="width: 100%; border-collapse: collapse; margin: 20px auto; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+   
+           <thead>
+             <tr style="background-color: #0b0c0b; color: white;">
+               <th style="border: 1px solid #ddd; padding: 10px;">Username</th>
+               <th style="border: 1px solid #ddd; padding: 10px;">Title</th>
+               <th style="border: 1px solid #ddd; padding: 10px;">Price</th>
+               <th style="border: 1px solid #ddd; padding: 10px;">Approve ?</th>
+             </tr>
+           </thead>
+         
+           <tbody id="rowelement">
+           </tbody>
+           <tr>
+            <tr style="text-align: center;">
+              <td colspan="4" style="border: 1px solid #ddd; padding: 10px;">
+                <Button  onclick="approveBooks()" style="background-color: rgb(78, 253, 78); color: black;" >Done</Button>
+                
+              </td>
+              
+            </tr>
+           </tr>
+      </table>
+ 
     <footer>
-        <p>&copy; 2024 Booking Library System. All rights reserved.</p>
+        <p>All rights reserved&copy; bookloop 2024.</p>
       </footer>
 
     <script>
@@ -59,34 +74,49 @@
 
         function loadAdminPanel() {
       const pendingBooks = JSON.parse(localStorage.getItem("pendingBooks")) || [];
-      pendingBooks.forEach(book => {
-        const bookElement = document.createElement("div");
-        bookElement.innerHTML = `
-         <label>user name :${loggedInUser} - $${book.price}</label>
-          <label>title : ${book.title} -  price:$${book.price} - approve ? </label>
-           <input type="checkbox" id="approve-${book.id}" value="${book.id}">
-        `;
-        document.getElementById("adminPanel").appendChild(bookElement);
-      }); }
-
+      pendingBooks.forEach((book,index) => {
+        var teelement=document.createElement("tr");
+        teelement.innerHTML=`
+           <td style="border: 1px solid #ddd; padding: 10px;">${loggedInUser}</td>
+           <td style="border: 1px solid #ddd; padding: 10px;">${book.title}</td>
+           <td style="border: 1px solid #ddd; padding: 10px;">${book.price}</td>
+           <td style="border: 1px solid #ddd; padding: 10px;">
+             <input type="checkbox"  id="approve-${book.id}" value="${index}">
+           </td> ` ;
+      teelement.style="text-align: center;"
+        document.getElementById("rowelement").appendChild(teelement);
+     
+        });
+      }
       function approveBooks() {
       const pendingBooks = JSON.parse(localStorage.getItem("pendingBooks")) || [];
-      const approvedBooks = [];
+      
+      var approvedBooks;
+  const oldvalues=localStorage.getItem("pendingBooks"); 
+  if(oldvalues!==null){
+    approvedBooks=JSON.parse( localStorage.getItem("approvedBooks"));
+  }else{
+    approvedBooks =[];
+  }
 
-      pendingBooks.forEach(book => {
-        const checkbox = document.getElementById(`approve-${book.id}`);
+      pendingBooks.forEach((book,index) => {
+        const checkbox = document.getElementById(`approve-${index}`);
         if (checkbox && checkbox.checked) {
              book.status = "approved";
+          
           approvedBooks.push(book);
+          pendingBooks.splice(index,1);
+          localStorage.setItem("pendingBooks", JSON.stringify(pendingBooks));
+
+          localStorage.setItem("approvedBooks", JSON.stringify(approvedBooks));
             location.reload();  
         }
       });
 
-      localStorage.setItem("approvedBooks", JSON.stringify(approvedBooks));
+     
+     
      
       alert("Books approved!");
-      loadApprovedBooks();
-      loadAdminPanel(); 
     }
         loadAdminPanel();
  
@@ -94,15 +124,4 @@
     
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
 

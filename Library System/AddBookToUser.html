@@ -83,7 +83,10 @@
     <nav class="navbar">
       <ul>
         <li>
-          <a href="index.html"><i class="fas fa-home"></i> Home</a>
+          <a href="mybooks.html"><i class="fas fa-home"></i> Home</a>
+        </li>
+        <li>
+          <a id="logout" href="approvedbooktouser.html"><i class="fas fa-sign-out-alt"></i> mybooks</a>
         </li>
         <li>
           <a id="logout" href="login.html"><i class="fas fa-sign-out-alt"></i> Log Out</a>
@@ -98,11 +101,13 @@
     </div>
 
     <div id="book-details" class="details"></div>
-    <div class="divconfirm">
+    <div id="divconfirm" class="divconfirm">
       <a id="confirm" class="confirm" href="#">addtoCard</a>
     </div>
   </div>
-
+  <footer>
+    <p>All rights reserved&copy; bookloop 2024.</p>
+  </footer>
   <script>
     var books = localStorage.getItem("books");
     const savedBooks = JSON.parse(localStorage.getItem("books"));
@@ -140,7 +145,14 @@
     
 
 
-  const selectedBooks = [];
+  var selectedBooks ;
+  const oldvalues=localStorage.getItem("pendingBooks"); 
+  if(oldvalues!==null){
+     selectedBooks=JSON.parse( localStorage.getItem("pendingBooks"));
+  }else{
+    selectedBooks =[];
+  }
+
     document
       .getElementById("confirm")
       .addEventListener("click", function (e) {
@@ -152,7 +164,7 @@
         
         selectBook(getBookIdFromURL(), book.title, book.price)
         saveToLocal()
-        document.getElementById("confirm").style=" display: none;"
+        document.getElementById("divconfirm").style=" display: none;"
       });
 
 
