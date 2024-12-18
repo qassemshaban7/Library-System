@@ -1,100 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Add New Book</title>
-    <link rel="stylesheet" href="style.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Delius+Swash+Caps&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-    />
-  </head>
-  <body>
-    <header>
-      <a href="home.html" style="text-decoration: none; color: white;"><h1>bookloop</h1></a>
-      <nav class="navbar">
-        <ul>
-          <li>
-            <a href="index.html"><i class="fas fa-home"></i> Home</a>
-          </li>
-          <li>
-            <a id="logout" href="login.html"
-              ><i class="fas fa-sign-out-alt"></i> Log Out</a
-            >
-          </li>
-        </ul>
-      </nav>
-    </header>
-    <h1>Add New Book</h1>
-    <div class="add-book-form">
-      <form action="index.html" id="add-book-form">
-        <input
-          class="add-book-element"
-          type="text"
-          id="title"
-          placeholder="Enter Book Name"
-        /><br />
-        <span id="t-error"></span>
-        <br />
-        <input
-          class="add-book-element"
-          type="text"
-          id="author"
-          placeholder="Enter author Name"
-        /><br />
-        <span id="a-error"></span>
-        <br />
-        <input
-          class="add-book-element"
-          type="text"
-          id="image"
-          placeholder="Enter image URL"
-        /><br />
-        <span id="img-error"></span>
-        <br />
-        <input
-          class="add-book-element"
-          type="number"
-          id="price"
-          placeholder="Enter price of the book"
-        /><br /><span class="error" id="p-error"></span> <br />
-        <textarea
-          id="descreption"
-          rows=""
-          class="add-book-element"
-          placeholder="enter descreption to your book"
-        ></textarea>
-        <br /><select
-          class="add-book-element"
-          type="radio"
-          id="avilablity"
-          required
-        >
-          <option value="Avilable">Avilable</option>
-          <option value="NotAvilable">NotAvilable</option>
-        </select>
-        <br />
-        <button class="add-book-button" id="add-book-button" type="submit">
-          Add New Book
-        </button>
-      </form>
-    </div>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Add New Book</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Delius+Swash+Caps&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+</head>
+
+<body>
+  <header>
+    <a href="home.html" style="text-decoration: none; color: white;">
+      <h1>bookloop</h1>
+    </a>
+    <nav class="navbar">
+      <ul>
+        <li>
+          <a href="index.html"><i class="fas fa-home"></i> Home</a>
+        </li>
+        <li>
+          <a id="logout" href="login.html"><i class="fas fa-sign-out-alt"></i> Log Out</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <h1>Add New Book</h1>
+  <div class="add-book-form">
+    <form action="index.html" id="add-book-form">
+      <input class="add-book-element" type="text" id="title" placeholder="Enter Book Name" /><br />
+      <span id="t-error"></span>
+      <br />
+      <input class="add-book-element" type="text" id="author" placeholder="Enter author Name" /><br />
+      <span id="a-error"></span>
+      <br />
+      <input class="add-book-element" type="" id="image" placeholder="Enter image URL" /><br />
+      <span id="img-error"></span>
+      <br />
+      <input class="add-book-element" type="number" id="price" placeholder="Enter price of the book" /><br /><span
+        class="error" id="p-error"></span> <br />
+      <textarea id="descreption" rows="" class="add-book-element"
+        placeholder="enter descreption to your book"></textarea>
+      <br /><select class="add-book-element" type="radio" id="avilablity" required>
+        <option value="Avilable">Avilable</option>
+        <option value="NotAvilable">NotAvilable</option>
+      </select>
+      <br />
+      <button class="add-book-button" id="add-book-button" type="submit">
+        Add New Book
+      </button>
+    </form>
+  </div>
+  <footer>
+    <p>
     <footer>
-      <p><footer>
-        <p>All rights reserved&copy; bookloop 2024.</p>
-      </footer></p>
+      <p>All rights reserved&copy; bookloop 2024.</p>
     </footer>
-    <script src="validation.js"></script>
-    <script src="addbook.js"></script>
-    <script src="sinup&login.js"></script>
-  </body>
+    </p>
+  </footer>
+  <script src="validation.js"></script>
+  <script src="addbook.js"></script>
+  <script src="sinup&login.js"></script>
+</body>
+
 </html>

@@ -100,7 +100,7 @@
  
   </header>
   <h1>Confirm Your booking</h1>
-  <p id="resultp" >this book in your card or pending to approve from admin</p>
+  <p id="resultp" style="color: red; text-align: center;">this book in your card or pending to approve from admin</p>
   <div class="container">
     <div class="book-image">
       <img id="book-image" src="" alt="a book image " />
@@ -135,7 +135,7 @@
         document.getElementById("book-details").innerHTML = `
             <p><span class="label">Name:</span> ${book.title}</p>
             <p><span class="label">Author:</span> ${book.author}</p>
-            <p><span class="label">Price:</span> ${book.price}</p>
+            <p><span class="label">Price:</span> ${book.price} $</p>
             <p><span class="label">Description:</span> ${book.descreption}</p>
         `;
         document.getElementById("book-image").src = book.imageElement;
@@ -159,7 +159,7 @@
   const bookExists = selectedBooks.some(b => b.title == book.title);
         if(bookExists)
         {
-          document.getElementById("resultp").style="display: block;";
+          document.getElementById("resultp").style="display: block; color: red;text-align: center;";
            document.getElementById("divconfirm").style="display: none;";
         }else{
           document.getElementById("resultp").style="display: none;";
