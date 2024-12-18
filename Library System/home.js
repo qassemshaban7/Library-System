@@ -30,7 +30,7 @@ function displayBooks(books = null) {
         detailsButton.className = "btn btn-details";
         detailsButton.addEventListener("click", () => {
             localStorage.setItem("DetailsBookIndex", index);
-            window.location.href = "Details.html?id=" + index;
+            window.location.href = "login.html " ;
         });
         div.appendChild(detailsButton);
 

@@ -31,14 +31,16 @@
                 <a href="mybooks.html"><i class="fas fa-home"></i> Home</a>
               </li>
               <li>
-                <a id="logout" href="approvedbooktouser.html"> mybooks</a>
+                <a  href="approvedbooktouser.html"> mybooks</a>
+              </li>
+              <li>
+                <a href="favorites.html"> Favorites</a>
               </li>
               <li>
                 <a id="logout" href="login.html"><i class="fas fa-sign-out-alt"></i> Log Out</a>
               </li>
             </ul>
           </nav>
-        
        
       </header>
       <div
@@ -54,16 +56,20 @@
         gap: 20px;
       "
     >
-      <div class="book-image">
-        <img id="book-image" height="400px" width="250px" src="" alt="صورة الكتاب" />
-      </div>
+    <table class="book-details">
+      <div id="book-image">
 
-      <div id="book-details" class="details"></div>
-    </div> 
-    <div  style="text-align: center;">
-     
+      </div>
+      
+      <!-- <tr >
+
+      </tr> -->
+      <!-- <tr >
         
-    </div>
+      </tr> -->
+    </table>
+       
+      </div>
     <footer>
         <p>All rights reserved&copy; bookloop 2024.</p>
       </footer>
@@ -79,17 +85,27 @@ for (let i = 0; i < approvalbooks.length; i++) {
     usersapprovedbooks.push(books[approvalbooks[i].id]) ;
 }
 
+// for (let i = 0; i < approvalbooks.length; i++) {
 
+//     document.getElementById("book-details").innerHTML = `<td>
+//               <p><span class="label">Name:</span> ${usersapprovedbooks[i].title}</p>
+//               <p><span class="label">Author:</span> ${usersapprovedbooks[i].author}</p>
+//               <p><span class="label">Price:</span> ${usersapprovedbooks[i].price}$</p>
+//               <p><span class="label">Description:</span> ${usersapprovedbooks[i].descreption}</p>
+//          </td> `;
+//     document.getElementById("book-image").src = usersapprovedbooks[i].imageElement;
+// }
 
 usersapprovedbooks.forEach(approvdbook => {
     if (approvdbook) {
-    document.getElementById("book-details").innerHTML = `
+    document.getElementsByClassName("book-details")[0].innerHTML += `<tr> <td>
               <p><span class="label">Name:</span> ${approvdbook.title}</p>
               <p><span class="label">Author:</span> ${approvdbook.author}</p>
               <p><span class="label">Price:</span> ${approvdbook.price}$</p>
               <p><span class="label">Description:</span> ${approvdbook.descreption}</p>
-          `;
-    document.getElementById("book-image").src = approvdbook.imageElement;
+          </td>`;
+    // document.getElementById().src = approvdbook.imageElement;
+    document.getElementsByClassName("book-details")[0].innerHTML +=`<td> <img  height="400px" width="250px" src="${ approvdbook.imageElement}" alt="a book image" />  </td> </tr> `;
   } else {
     document.getElementById("book-details").innerHTML =
       "<p>this book is not Found</p>";
