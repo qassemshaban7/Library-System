@@ -71,6 +71,7 @@
     .confirm:hover {
      
       background-color: rgb(75, 155, 75);
+      display: block;
     }
   </style>
 </head>
@@ -99,6 +100,7 @@
  
   </header>
   <h1>Confirm Your booking</h1>
+  <p id="resultp" >this book in your card or pending to approve from admin</p>
   <div class="container">
     <div class="book-image">
       <img id="book-image" src="" alt="a book image " />
@@ -129,9 +131,6 @@
         alert("We Don't find this book");
         return;
       }
-
-     
-
       if (book) {
         document.getElementById("book-details").innerHTML = `
             <p><span class="label">Name:</span> ${book.title}</p>
@@ -157,6 +156,15 @@
     selectedBooks =[];
   }
 
+  const bookExists = selectedBooks.some(b => b.title == book.title);
+        if(bookExists)
+        {
+          document.getElementById("resultp").style="display: block;";
+           document.getElementById("divconfirm").style="display: none;";
+        }else{
+          document.getElementById("resultp").style="display: none;";
+          
+        }
     document
       .getElementById("confirm")
       .addEventListener("click", function (e) {
@@ -168,13 +176,14 @@
         
         selectBook(getBookIdFromURL(), book.title, book.price)
         saveToLocal()
-        document.getElementById("divconfirm").style=" display: none;"
+        document.location.reload();
       });
 
 
     function selectBook(id, title, price) {
       
         selectedBooks.push({ id, title, price, status: "pending" });
+
      
   }
     function saveToLocal() {
